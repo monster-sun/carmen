@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: carmen
+    relative_path: robots/carmen.URDF
+  SRDF:
+    relative_path: config/carmen.srdf
+  CONFIG:
+    generated_timestamp: 1464110844
