@@ -10,6 +10,17 @@ package created from moveit_setup_assistant
 - move_group_coordinate.cpp : move to a predefined coordinate in space
 - move_group_coordinate2.cpp : subscribe to topic /point and then move to that coordinate in space by sending command "rostopic pub point geometry_msgs/Point '{x: -0.687822, y: 0.316510, z: 0.475076}' --once"
 
+# /carmen_msgs :
+package containing carmen_msgs for talking to arduino through rosserial
+
+# /carmen_ino :
+contains arduino code for subscribing to <sensor_msgs::JointState> rosserial_joint_states
+
+next : change servo to stepper, publish /joint_states
+
+# /wlehman :
+folder containing reference codes from William Lehman
+
 # Alternative to publishing topic for testing purpose :
 rostopic pub /move_group/fake_controller_joint_states sensor_msgs/JointState '{header: {seq: 0, stamp: {secs: 0, nsecs: 0}, frame_id: ""}, name: ["art1"], position: [150.0], velocity: [0.0], effort: [0.0]}' --once
 

@@ -17,6 +17,7 @@
 #endif
 
 #include <carmen_msgs/carmen.h>
+#include <sensor_msgs/JointState.h>
 #include <Servo.h> 
 #include <ros.h>
 #include <std_msgs/UInt16.h>
@@ -59,7 +60,7 @@ void cmd_cb( const carmen_msgs::carmen& cmd_arm){
 }
 
 
-ros::Subscriber<brazen_msgs::brazenbot> sub("move_group/cmd_joints", cmd_cb);
+ros::Subscriber<sensor_msgs::JointState> sub("move_group/fake_controller_joint_states", cmd_cb);
 //std_msgs::String str_msg;
 //ros::Publisher chatter("chatter", &str_msg);
 //char hello[13] = "hello world!";
