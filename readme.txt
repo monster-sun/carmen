@@ -13,13 +13,11 @@ package created from moveit_setup_assistant
 # /carmen_msgs :
 package containing carmen_msgs for talking to arduino through rosserial
 
-# /carmen_ino :
-contains arduino code for subscribing to <sensor_msgs::JointState> rosserial_joint_states
+# /carmen_step :
+contains arduino code for subscribing to <sensor_msgs::JointState>, convert the radian degree to steps and publishing them as /joint_steps
 
 running rosserial connection :
 rosrun rosserial_python serial_node.py /dev/ttyUSB0
-
-next : change servo to stepper, publish /joint_states
 
 # /wlehman :
 folder containing reference codes from William Lehman

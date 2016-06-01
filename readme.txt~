@@ -16,6 +16,9 @@ package containing carmen_msgs for talking to arduino through rosserial
 # /carmen_ino :
 contains arduino code for subscribing to <sensor_msgs::JointState> rosserial_joint_states
 
+running rosserial connection :
+rosrun rosserial_python serial_node.py /dev/ttyUSB0
+
 next : change servo to stepper, publish /joint_states
 
 # /wlehman :
