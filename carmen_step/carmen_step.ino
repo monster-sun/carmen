@@ -21,6 +21,7 @@
   #include <WProgram.h>
 #endif
 
+#include <math.h>
 #include <ros.h>
 #include <std_msgs/UInt16.h>
 #include <sensor_msgs/JointState.h>
@@ -39,20 +40,11 @@ int joint_status = 0;
 int stepper[6];
 int joint_step[6];
 
-uint16_t convert_angle(double x)
+int convert_angle(double x)
 {
-  uint16_t y;
-  if (x > 0.0)
-  {
-    y = (uint16_t)((x* 180.0 / M_PI + 90.0) + 0.5); 
-    y = (y/360)*STEPS;
-  }
-  else
-  {
-    y = (uint16_t) (abs(x * 180.0 / M_PI + 90.0) + 0.5);
-    y = (y/360)*STEPS;
-  }
-  
+  float y;
+  y=((x / M_PI)*STEPS)+0.5;
+  return y;
 }
 
 void cmd_cb( const sensor_msgs::JointState& cmd_arm)
@@ -101,7 +93,7 @@ void loop()
 {
   char buf[50] = {};
   //str_msg.data = "hello world";
-  str_msg.data = itoa(joint_step[3],buf,10);
+  str_msg.data = itoa(joint_step,buf,10);
   
   nh.spinOnce();
   delay(1);
@@ -109,21 +101,55 @@ void loop()
   if(joint_status == 1)
   {
     steps.publish(&str_msg);
-    
-    if (digitalRead(2)== HIGH)
-    {
-    digitalWrite(DIR, LOW);
-    }
-    if (digitalRead(2)== LOW)
-    {
-    digitalWrite(DIR, HIGH);
-    }
 
-    digitalWrite(PUL, HIGH);
-    delay(2000);
-    digitalWrite(PUL, LOW);
-    delay(2000);
-    
+    if (joint_step[0] > 0)
+      {
+        
+      }
+    if (joint_step[0] < 0)
+      {
+        
+      }
+    if (joint_step[1] > 0)
+      {
+        
+      }
+    if (joint_step[1] < 0)
+      {
+        
+      }
+    if (joint_step[2] > 0)
+      {
+        
+      }
+    if (joint_step[2] < 0)
+      {
+        
+      }
+    if (joint_step[3] > 0)
+      {
+        
+      }
+    if (joint_step[3] < 0)
+      {
+        
+      }
+    if (joint_step[4] > 0)
+      {
+        
+      }
+    if (joint_step[4] < 0)
+      {
+        
+      }
+    if (joint_step[5] > 0)
+      {
+        
+      }
+    if (joint_step[5] < 0)
+      {
+        
+      }
      
   }
  }
