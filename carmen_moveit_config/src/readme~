@@ -1,7 +1,6 @@
 move_group_random: randomly assign coordinate
 
-move_group_coordinate: move to a predefined coordinate in space (doesnt work with new SRDF)
-move_group_coordinate3: move to a predefined coordinate in space (NEW - working)
+move_group_coordinate: move to a predefined coordinate in space
 
 move_group_coordinate2: subscribe to topic /point and then move to that coordinate in space.
 rostopic pub point geometry_msgs/Point '{x: -0.687822, y: 0.316510, z: 0.475076}' --once

@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(carmen_moveit_config)
 
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS roscpp moveit_ros_planning_interface)
+
+find_package(cmake_modules REQUIRED)
+find_package(Eigen REQUIRED)
+include_directories(SYSTEM ${Boost_INCLUDE_DIR} ${EIGEN_INCLUDE_DIRS})
 
 catkin_package()
 

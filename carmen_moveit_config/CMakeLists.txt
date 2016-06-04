@@ -21,5 +21,8 @@ target_link_libraries(move_group_interface_coordinate ${catkin_LIBRARIES})
 add_executable(move_group_interface_coordinate2 src/move_group_interface_coordinate2.cpp)
 target_link_libraries(move_group_interface_coordinate2 ${catkin_LIBRARIES})
 
+add_executable(move_group_interface_coordinate3 src/move_group_interface_coordinate3.cpp)
+target_link_libraries(move_group_interface_coordinate3 ${catkin_LIBRARIES})
+
 add_executable(carmen_node src/carmen_node.cpp)
 target_link_libraries(carmen_node ${catkin_LIBRARIES})
