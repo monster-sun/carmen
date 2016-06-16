@@ -1,5 +1,15 @@
 carmen 6 DOF robotic arm for MBZIRC competition
 
+#Things to tackle:
+1. Finalise code:
+   - moveit plath panning (nic)
+   - box2 algorithm (kok)
+   - (optional) fix publisher command itoa (arduino_step)
+2. Get coordinates (richmond)
+3. Cleanup wiring (singaram)
+4. Simulation video
+5. Real-life video
+
 # /carmen :
 package containing carmen's URDF, created from converting Solidworks STL file
 
@@ -15,6 +25,10 @@ package containing carmen_msgs for talking to arduino through rosserial
 
 # /carmen_step :
 contains arduino code for subscribing to <sensor_msgs::JointState>, convert the radian degree to steps and publishing them as /joint_steps
+
+arduino avrdude error:
+sudo chmod -a -G dialout <username>
+sudo chmod a+rw /dev/ttyACM0
 
 running rosserial connection :
 rosrun rosserial_python serial_node.py /dev/ttyUSB0
@@ -34,4 +48,5 @@ However, when I publish 1 joint with 6 float position with many decimal places, 
 Problem is with the JointState.name! Try brazenbot_joints, I think you have to convert the JointState.name into char like specified here:
 http://answers.ros.org/question/185245/sensor_msgsjointstate-on-arduino/
 
+# Extra reference:
 http://answers.ros.org/question/11887/significance-of-rosspinonce/?answer=17582#post-id-17582
