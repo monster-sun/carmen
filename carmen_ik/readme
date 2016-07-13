@@ -1,0 +1,8 @@
+###src/
+
+1. move_v1.cpp
+
+Subscribe to "initialize" and perform "init" callback to adjust steps to the initial position
+Subscribe to "point" and perform "ik" callback to convert end-point coordinate to respective joint steps
+Publish "move_arm" containing carmen_ik::Motor message of the steps for every joints
+
