@@ -3,7 +3,6 @@
 #include <carmen_ik/WriteMotor.h>
 #include <carmen_ik/ReadMotor.h>
 #include <std_msgs/Bool.h>
-#include <std_msgs/String.h>
 #include <math.h>
 
 double joint_step[6];
@@ -11,12 +10,11 @@ int joint_status = 0;
 #define gear_ratio 49
 
 ros::NodeHandle nh;
-std_msgs::String str_msg;
 
 int convert_gear(double x) // Apply gear ratio
 {
   float y;
-  y=((x*gear_ratio)+0.5);
+  y=((x+0.5)*gear_ratio);
   return y;
 }
 
@@ -31,8 +29,6 @@ void move(const carmen_ik::Motor& motor){
 }
 
 ros::Subscriber<carmen_ik::Motor> move_sub("move_arm",&move);
-ros::Publisher steps("joint_steps",&str_msg);
-
 void setup() {
   // put your setup code here, to run once:
   nh.initNode();
@@ -40,9 +36,7 @@ void setup() {
 }
 
 void loop() {
-  char buf[50] = {};
-  str_msg.data = itoa(joint_step[1],buf,10);
-  
+  // put your main code here, to run repeatedly:
   nh.spinOnce();
   delay(1);
 
