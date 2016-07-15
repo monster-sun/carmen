@@ -39,8 +39,10 @@ folder containing reference codes from William Lehman
 # Alternative to publishing topic for testing purpose :
 rostopic pub /move_group/fake_controller_joint_states sensor_msgs/JointState '{header: {seq: 0, stamp: {secs: 0, nsecs: 0}, frame_id: ""}, name: ["art1"], position: [150.0], velocity: [0.0], effort: [0.0]}' --once
 
-replace name with: ["joint1,joint2,joint3,joint4,joint5,joint6"]
+[move_group_interface_coordinateX]replace name with: ["joint1,joint2,joint3,joint4,joint5,joint6"]
 position: [1.2479490205621717, -0.6382032520635745, 0.25038124775567, -0.07965276236259244, -1.5680344280265524, 1.823960169093795]
+
+[move_group_interface_coordinate3]replace position with: [8.484156856189173, 0.38891664634569356, 0.9718725317492501, 1.3537211295257285, -0.406554940166597]
 
 # Update :
 Using the above code and running Arduino Ros Serial Blink, the LED will blink. However when we publish 6 joints, it fail to blink. Maximum we could publish for the ros serial to blink is 3 joints
