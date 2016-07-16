@@ -131,16 +131,16 @@ include_directories(
 # add_dependencies(carmen_ik ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(carmen_ik_node src/carmen_ik_node.cpp)
+add_executable(ik_move_v1 src/move_v1.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(carmen_ik_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(ik_move_v1 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(carmen_ik_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(ik_move_v1
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##

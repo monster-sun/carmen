@@ -8,6 +8,7 @@
 
 double joint_step[6];
 int joint_status = 0;
+int STEPS = 400;
 #define gear_ratio 49
 
 ros::NodeHandle nh;
@@ -16,8 +17,8 @@ std_msgs::String str_msg;
 int convert_gear(double x) // Apply gear ratio
 {
   float y;
-  y=((x*gear_ratio)+0.5);
-  return y;
+  y=((x / 360)*STEPS)+0.5;
+  return y*gear_ratio;
 }
 
 void move(const carmen_ik::Motor& motor){

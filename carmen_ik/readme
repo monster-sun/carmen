@@ -2,7 +2,11 @@
 
 1. move_v1.cpp
 
-Subscribe to "initialize" and perform "init" callback to adjust steps to the initial position
-Subscribe to "point" and perform "ik" callback to convert end-point coordinate to respective joint steps
-Publish "move_arm" containing carmen_ik::Motor message of the steps for every joints
+Subscribe to "initialize" and perform "init" callback to adjust steps to the initial position, publish "initial_angle" afterwards
 
+Subscribe to "point" and perform "ik" callback to convert end-point coordinate to respective joint steps
+Publish "post_ik_angle" containing the joint angles in degree (corrected with adjust angle)
+Publish "move_arm" containing the joint angles in degree (corrected with adjust angle) if all the angles satisfy the joint angle limits
+
+2. carmen_teleoperator.cpp (not yet built)
+Keyboard teleoperator for carmen

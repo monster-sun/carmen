@@ -20,14 +20,23 @@ carmen_ik::Motor initialize,step;
 
 void init(const std_msgs::Empty& init)
 {
-    ::initialize.base = ((base_adjust)*STEPS)/360;
-    ::initialize.joint1 = ((joint1_adjust)*STEPS)/360;
-    ::initialize.joint2 = ((joint2_adjust)*STEPS)/360;
-    ::initialize.joint3 = ((joint3_adjust)*STEPS)/360;
+    ros::NodeHandle nh;
+    ros::Publisher init_angle = nh.advertise<carmen_ik::Motor>("initial_angle",1);
+    ::initialize.joint1 = base_adjust;
+    ::initialize.joint2 = joint1_adjust;
+    ::initialize.joint3 = joint2_adjust;
+    ::initialize.joint4 = joint3_adjust;
+
+    init_angle.publish(initialize);
 }
 
 void ik(const geometry_msgs::Point& point)
 {
+    ros::NodeHandle nh;
+    ros::Publisher move_pub_= nh.advertise<carmen_ik::Motor>("move_arm",1);
+    ros::Publisher pre_move_pub_ = nh.advertise<carmen_ik::Motor>("post_ik_angle",1);
+    ros::Publisher init_angle = nh.advertise<carmen_ik::Motor>("initial_angle",1);
+
     double x = point.x;
     double y = point.y;
     double z = point.z;
@@ -81,12 +90,12 @@ void ik(const geometry_msgs::Point& point)
 	    coordenadas_correctas = 0; 
     }
 
-    ::step.base = ((alfa+base_adjust)*STEPS)/360;
-    ::step.joint1 = ((beta+joint1_adjust)*STEPS)/360;
-    ::step.joint2 = ((gamma-joint2_adjust)*STEPS)/360;
-    ::step.joint3 = ((delta-joint3_adjust)*STEPS)/360;
+    ::step.joint1 = alfa+base_adjust;
+    ::step.joint2 = beta+joint1_adjust;
+    ::step.joint3 = gamma-joint2_adjust;
+    ::step.joint4 = delta-joint3_adjust;
 
-    move_pub_.publish(step);
+    pre_move_pub_.publish(step);
 
     //::vel.base = abs(::move.base - ::p.base)/5;
     //::vel.arti1 = abs(::move.arti1 - ::p.arti1)/5;
@@ -94,14 +103,14 @@ void ik(const geometry_msgs::Point& point)
     //::vel.arti3 = abs(::move.arti3 - ::p.arti3)/5;
     //::vel.pinza = abs(::move.pinza - ::p.pinza);
     
-    if (coordenadas_correctas == 1 && (205 <= ::step.base && ::step.base <= 818) && (-127 <= ::step.joint1 && ::step.joint1 <= 127) && (-127 <= ::step.joint2 && ::step.joint2 <= 127) && (-199 <= ::step.joint3 && ::step.joint3 <= 199)) {
+    if (coordenadas_correctas == 1 && (-90 <= ::step.joint1 && ::step.joint1 <= 90) && (-57 <= ::step.joint2 && ::step.joint2 <= 57) && (-57 <= ::step.joint3 && ::step.joint3 <= 57) && (-89 <= ::step.joint4 && ::step.joint4 <= 89)) {
 
 	    carmen_ik::Motor move;
 
-	    move.base = step.base;
 	    move.joint1 = step.joint1;
 	    move.joint2 = step.joint2;
 	    move.joint3 = step.joint3;
+	    move.joint4 = step.joint4;
 	    
 	    move_pub_.publish(move);
     }
@@ -117,6 +126,8 @@ int main(int argc, char **argv)
  
     ros::Subscriber init_sub = nh.subscribe("initialize",1,init);
     ros::Subscriber point_sub_= nh.subscribe("point",1,ik);
+    ros::Publisher init_angle = nh.advertise<carmen_ik::Motor>("initial_angle",1);
+    ros::Publisher pre_move_pub_ = nh.advertise<carmen_ik::Motor>("post_ik_angle",1);
     ros::Publisher move_pub_ = nh.advertise<carmen_ik::Motor>("move_arm",1);
 
     ros::spin();
