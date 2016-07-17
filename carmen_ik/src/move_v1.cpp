@@ -41,7 +41,7 @@ void ik(const geometry_msgs::Point& point)
     double y = point.y;
     double z = point.z;
    
-    y = y + z*tan(atan2(45,250)); //?
+    //y = y + z*tan(atan2(45,250)); //?
 
     int coordenadas_correctas = 1; //?
 
