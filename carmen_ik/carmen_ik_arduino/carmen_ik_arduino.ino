@@ -22,6 +22,7 @@ int convert_gear(double x) // Apply gear ratio
 }
 
 void move(const carmen_ik::Motor& motor){
+  //digitalWrite(13, HIGH-digitalRead(13));
   joint_status = 1;
 
   joint_step[0] = convert_gear(motor.joint1);
@@ -38,6 +39,7 @@ void setup() {
   // put your setup code here, to run once:
   nh.initNode();
   nh.subscribe(move_sub);
+  pinMode(13,OUTPUT);
 }
 
 void loop() {
