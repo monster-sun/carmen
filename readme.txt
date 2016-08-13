@@ -1,12 +1,28 @@
 carmen 6 DOF robotic arm for MBZIRC competition
+by Nicholas Adrian
+github.com/nicholasadr
 
-#Problems:
-1. carmen_step_June_16: If radian angle is more than 1, the joint_steps calculated will be off (is this due to itoa?)
-2. carmen_ik_arduino: Problem reading Motor.h (as usual...), when I run (rosrun rosserial_arduino.py make_libraries.py .), ros_lib folder seems to be empty
+-------------------
+CURRENT DIRECTORIES
+-------------------
 
 # /carmen :
 package containing carmen's URDF, created from converting Solidworks STL file
 
+# /carmen_moveit_config_v2 :
+modification from carmen_moveit_config
+changes made in moveit_setup_assistant, following RosBook Vol 2
+
+# /carmen_move :
+Working node that moves every joint's stepper motor following a cartesian coordinate command
+- src/moveit_convert.cpp : subscribes to /move_group/fake_controller_joint_states, converts to steps and publishes /joint_steps
+- src/move_group_interface_coor_1.cpp : send cartesian coordinate to MoveIt!
+- msg/ArmJointState.h : contains custom message for /joint_states (to re-package /move_group/fake_controller_joint_states)
+- carmen_move_arduino/carmen_move_arduino.ino : subscribes to <carmen_move::ArmJointState> /joint_steps
+
+---------------
+OLD DIRECTORIES
+---------------
 # /carmen_moveit_config :
 package created from moveit_setup_assistant
 - carmen_node.cpp : subscribe to <sensor_msgs::JointState> /move_group/fake_controller_joint_states and publish to <sensor_msgs::JointState> rosserial_joint_states
@@ -20,15 +36,19 @@ package containing carmen_msgs for talking to arduino through rosserial
 # /carmen_step :
 contains arduino code for subscribing to <sensor_msgs::JointState>, convert the radian degree to steps and publishing them as /joint_steps
 
-arduino avrdude error:
+# /wlehman :
+folder containing reference codes from William Lehman
+
+---------------
+TROUBLESHOOTING
+---------------
+
+#arduino avrdude error:
 sudo chmod -a -G dialout <username>
 sudo chmod a+rw /dev/ttyACM0
 
-running rosserial connection :
+#running rosserial connection :
 rosrun rosserial_python serial_node.py /dev/ttyUSB0
-
-# /wlehman :
-folder containing reference codes from William Lehman
 
 # Alternative to publishing topic for testing purpose :
 rostopic pub /move_group/fake_controller_joint_states sensor_msgs/JointState '{header: {seq: 0, stamp: {secs: 0, nsecs: 0}, frame_id: ""}, name: ["art1"], position: [150.0], velocity: [0.0], effort: [0.0]}' --once
@@ -43,6 +63,10 @@ Using the above code and running Arduino Ros Serial Blink, the LED will blink. H
 However, when I publish 1 joint with 6 float position with many decimal places, the blink works!
 Problem is with the JointState.name! Try brazenbot_joints, I think you have to convert the JointState.name into char like specified here:
 http://answers.ros.org/question/185245/sensor_msgsjointstate-on-arduino/
+
+# message creation of subscriber failed: checksum does not match
+If the following message appears after "rosrun rosserial_python serial_node.py /dev/ttyACM0", make sure the message type between subscriber and callback are the same.
+In my case, remove "Header header" in the custom message as it will be resolved std_msgs/Header instead of carmen_move/ArmJointState in callback function
 
 # Extra reference:
 http://answers.ros.org/question/11887/significance-of-rosspinonce/?answer=17582#post-id-17582

@@ -1,6 +1,6 @@
-Header header
-
-string[] name
-uint8[] position
-float64[] velocity
-float64[] effort
+uint8 position1
+uint8 position2
+uint8 position3
+uint8 position4
+uint8 position5
+uint8 position6

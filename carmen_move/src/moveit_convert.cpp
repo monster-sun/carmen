@@ -25,19 +25,19 @@ void cmd_cb(const sensor_msgs::JointState& cmd_arm)
   ros::Publisher pub = nh.advertise<carmen_move::ArmJointState>("joint_steps",50);
   ROS_INFO_STREAM("Received /move_group/fake_controller_joint_states");
   
-  arm_steps.position.push_back(convert_angle(cmd_arm.position[0])-previous_step[0]);
-  arm_steps.position.push_back(convert_angle(cmd_arm.position[1])-previous_step[1]);
-  arm_steps.position.push_back(convert_angle(cmd_arm.position[2])-previous_step[2]);
-  arm_steps.position.push_back(convert_angle(cmd_arm.position[3])-previous_step[3]);
-  arm_steps.position.push_back(convert_angle(cmd_arm.position[4])-previous_step[4]);
-  arm_steps.position.push_back(convert_angle(cmd_arm.position[5])-previous_step[5]);
+  arm_steps.position1 = convert_angle(cmd_arm.position[0])-previous_step[0];
+  arm_steps.position2 = convert_angle(cmd_arm.position[1])-previous_step[1];
+  arm_steps.position3 = convert_angle(cmd_arm.position[2])-previous_step[2];
+  arm_steps.position4 = convert_angle(cmd_arm.position[3])-previous_step[3];
+  arm_steps.position5 = convert_angle(cmd_arm.position[4])-previous_step[4];
+  arm_steps.position6 = convert_angle(cmd_arm.position[5])-previous_step[5];
 
-  previous_step[0] = arm_steps.position[0];
-  previous_step[1] = arm_steps.position[1];
-  previous_step[2] = arm_steps.position[2];
-  previous_step[3] = arm_steps.position[3];
-  previous_step[4] = arm_steps.position[4];
-  previous_step[5] = arm_steps.position[5];
+  previous_step[0] = arm_steps.position1;
+  previous_step[1] = arm_steps.position2;
+  previous_step[2] = arm_steps.position3;
+  previous_step[3] = arm_steps.position4;
+  previous_step[4] = arm_steps.position5;
+  previous_step[5] = arm_steps.position6;
 
   ROS_INFO_STREAM("Done conversion to /joint_steps");
   joint_status = 1;
