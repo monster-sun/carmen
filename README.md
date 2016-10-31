@@ -6,6 +6,13 @@ github.com/nicholasadr
 CURRENT DIRECTORIES
 -------------------
 
+# /cnt:
+New package for Arm
+[Code][Test]
+[Done 31/10/16][Waiting] Discrete Step Motion
+[ -- ][ -- ] Continuous and Synchronised Motion
+[ -- ][ -- ] Include Inverse Kinematics 
+
 # /carmen :
 package containing carmen's URDF, created from converting Solidworks STL file
 
