@@ -21,12 +21,12 @@ void cmd_cb(const cnt::ArmJointState& arm_steps){
   //digitalWrite(13, HIGH-digitalRead(13));
   joint_status = 1;
 
-  joint_step[0] = arm_steps.position1;
-  joint_step[1] = arm_steps.position2;
-  joint_step[2] = arm_steps.position3;
-  joint_step[3] = arm_steps.position4;
-  joint_step[4] = arm_steps.position5;
-  joint_step[5] = arm_steps.position6;
+  joint_step[0] = arm_steps.position[0];
+  joint_step[1] = arm_steps.position[1];
+  joint_step[2] = arm_steps.position[2];
+  joint_step[3] = arm_steps.position[3];
+  joint_step[4] = arm_steps.position[4];
+  joint_step[5] = arm_steps.position[5];
 }
 
 ros::Subscriber<cnt::ArmJointState> sub("/cnt/output_steps", &cmd_cb);

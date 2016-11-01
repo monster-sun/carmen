@@ -10,7 +10,7 @@ CURRENT DIRECTORIES
 New package for Arm
 [Code][Test]
 [Done 31/10/16][Waiting] Discrete Step Motion
-[ -- ][ -- ] Continuous and Synchronised Motion
+[Working][ -- ] Continuous and Synchronised Motion
 [ -- ][ -- ] Include Inverse Kinematics 
 
 # /carmen :

@@ -1,6 +1,2 @@
-int16 position1
-int16 position2
-int16 position3
-int16 position4
-int16 position5
-int16 position6
+int16[6] position
+uint16[6] rpm

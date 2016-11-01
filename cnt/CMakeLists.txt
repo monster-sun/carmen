@@ -131,6 +131,7 @@ include_directories(
 
 ## Declare a C++ executable
 add_executable(cnt_discrete_step src/discrete_step.cpp)
+add_executable(cnt_continuous_step src/continuous_step.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -138,6 +139,9 @@ add_executable(cnt_discrete_step src/discrete_step.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(cnt_discrete_step
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(cnt_continuous_step
   ${catkin_LIBRARIES}
 )
 
