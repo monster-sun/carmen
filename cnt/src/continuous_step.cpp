@@ -25,7 +25,7 @@ uint16_t setRPM(uint16_t gearbox_steps)
 {
   ROS_INFO_STREAM("In setRPM function");
   float rpm;
-  rpm = (60*gearbox_steps)/(TimePerMotion*MotorStepsPerRev);
+  rpm = (60*gearbox_steps)/(TimePerMotion*MotorStepsPerRev*gear_ratio);
   ROS_INFO_STREAM("Done calculating rpm");
   return rpm;
 }
