@@ -9,8 +9,8 @@ void setup() {
 
 byte Step1[2],Step2[2],Step3[2],Step4[2],Step5[2],Step6[2];
 byte RPM1[2],RPM2[2],RPM3[2],RPM4[2],RPM5[2],RPM6[2];
-uint16_t step1 = 5, step2 = 200, step3 = 1000, step4 = 8000, step5 = 10000, step6 = 20000;
-uint16_t rpm1 = 100, rpm2 = 200, rpm3 = 256, rpm4 = 40, rpm5 = 50, rpm6 = 600;
+uint16_t step1 = 5, step2 = 200, step3 = 800, step4 = 8000, step5 = 10000, step6 = 20000;
+uint16_t rpm1 = 100, rpm2 = 200, rpm3 = 600, rpm4 = 40, rpm5 = 50, rpm6 = 600;
 //600 = 2 bytes  //00000010 01011000 (2)(88)
 //byte * bytePointer;
 
